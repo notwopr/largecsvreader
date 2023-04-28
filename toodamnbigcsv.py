@@ -98,10 +98,18 @@ input_section = html.Div([
     html.Button(
         id='confirmcols',
         n_clicks=0,
-        children='Submit',
+        children='Display',
         type='button',
         className='btn btn-outline-dark m-1 rounded-3'
-        )
+        ),
+    html.Button(
+        id='exportcols',
+        n_clicks=0,
+        children='Export',
+        type='button',
+        className='btn btn-outline-dark m-1 rounded-3'
+        ),
+    dcc.Download(id="downloadcsv"),
 ], className='ps-3 pe-3 pb-3')
 
 app.layout = html.Div(
@@ -195,6 +203,19 @@ def gen_csvtable(n_clicks, confirmcols, csvchart, sort_by):
         csvchart = df.to_dict('records')
         columns = [{"name": i, 'id': i} for i in df.columns]
     return csvchart, ', '.join(confirmcols), columns
+
+
+# save chart
+@app.callback(
+    Output("downloadcsv", "data"),
+    Input("exportcols", 'n_clicks'),
+    Input('whatcols', 'value'),
+    )
+def gen_csvtable(n_clicks, confirmcols):
+    if n_clicks:
+        newdf = central.sourcedf[confirmcols]
+        csv_string = newdf.to_csv(index=False, encoding='utf-8')
+        return dict(content=csv_string, filename="notsodamnbig.csv")
 
 if __name__ == '__main__':
     app.run_server(debug=False)
