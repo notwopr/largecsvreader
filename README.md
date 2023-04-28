@@ -1,4 +1,4 @@
-# Too Big CSV Viewer
+# Too Damn Big CSV Viewer
 
 This is a simple CSV Viewer using Python.
 
