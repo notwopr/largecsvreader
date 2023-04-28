@@ -199,14 +199,6 @@ def gen_csvtable(n_clicks, confirmcols, csvchart, sort_by):
         columns = [{"name": i, 'id': i} for i in df.columns]
     return csvchart, ', '.join(confirmcols), columns
 
-debug_mode = True
-application = app.server
 if __name__ == '__main__':
-    index_string = app.index_string
-    with open('index.html', 'w') as f:
-        f.write(index_string)
-    if debug_mode:
-        app.run_server(debug=True)
-    else:
-        application.run(debug=False)
+    app.run_server(debug=False)
     
