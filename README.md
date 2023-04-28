@@ -1,4 +1,5 @@
-# Too Damn Big CSV Viewer
+## Too Damn Big CSV Viewer
+__When you don't have Excel and your XLS/CSV file is too large for Google Sheets. :(__
 
 This is a simple CSV Viewer using Python.
 
