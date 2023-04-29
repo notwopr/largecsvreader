@@ -7,10 +7,12 @@ Date: Apr 27, 2023
 from dash import dcc, html, callback_context, dash_table
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
+
 import pandas as pd
 import dash
 import base64
 import io
+
 
 external_stylesheets = [
     dbc.themes.MORPH,
@@ -78,7 +80,7 @@ input_section = html.Div([
             'borderRadius': '5px',
         },
         multiple=False,
-        className='pe-3 ps-3 text-center'
+        className='text-center'
     ),
     html.Div(id='output-data-upload'),
     html.Br(),
@@ -89,7 +91,6 @@ input_section = html.Div([
         placeholder='Select Columns You Want Displayed',
         clearable=False,
         searchable=False,
-        # className='rounded-3 ms-2 me-2 mb-1 mt-1 w-auto',
         ),
     html.Div([
         html.B('Columns to Display: '),
@@ -110,7 +111,20 @@ input_section = html.Div([
         className='btn btn-outline-dark m-1 rounded-3'
         ),
     dcc.Download(id="downloadcsv"),
-], className='ps-3 pe-3 pb-3')
+], className='pb-3')
+
+
+dono_link = html.A(
+            html.Img(
+            height='36',
+            style={'border':'0px','height': '36px'},
+            src='https://storage.ko-fi.com/cdn/kofi5.png?v=3',
+            alt='Buy Me a Coffee at ko-fi.com'
+            ),
+        href='https://ko-fi.com/I3I8KTCB6',
+        target='_blank',
+        id='kofi', className='fixed-bottom text-center pb-3'
+        )
 
 app.layout = html.Div(
     [
@@ -118,7 +132,8 @@ app.layout = html.Div(
         description_section,
         input_section,
         table_section,
-    ], className='p-8'
+        dono_link,
+    ], className='ps-5 pe-5'
 )
 
 # Instantiate Global File Storage
@@ -216,6 +231,8 @@ def gen_csvtable(n_clicks, confirmcols):
         newdf = central.sourcedf[confirmcols]
         csv_string = newdf.to_csv(index=False, encoding='utf-8')
         return dict(content=csv_string, filename="notsodamnbig.csv")
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=False)
