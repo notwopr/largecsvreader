@@ -114,7 +114,8 @@ input_section = html.Div([
 ], className='pb-3')
 
 
-dono_link = html.A(
+dono_link = html.Div([
+    html.A(
             html.Img(
             height='36',
             style={'border':'0px','height': '36px'},
@@ -123,8 +124,9 @@ dono_link = html.A(
             ),
         href='https://ko-fi.com/I3I8KTCB6',
         target='_blank',
-        id='kofi', className='fixed-bottom text-center pb-3'
-        )
+        id='kofi'
+        ),
+    ], className="pb-3 fixed-bottom d-flex justify-content-center")
 
 app.layout = html.Div(
     [
