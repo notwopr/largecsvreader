@@ -10,3 +10,5 @@ You can sort, filter by row, or view selected columns.
 Dash's filtering by row features are not very good (e.g. cannot using OR statements).
 
 Here is an sample deployment: http://notwopr.pythonanywhere.com/
+
+If you like my code please consider donating: https://ko-fi.com/notwopr
