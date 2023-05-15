@@ -82,10 +82,11 @@ input_section = html.Div([
         multiple=False,
         className='text-center'
     ),
-    html.Div(id='output-data-upload'),
+    html.Div(id='output-data-upload', children='No File Loaded.'),
     html.Br(),
     dcc.Dropdown(
         id='whatcols',
+        options=[],
         value=[],
         multi=True,
         placeholder='Select Columns You Want Displayed',
