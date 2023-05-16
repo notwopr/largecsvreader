@@ -230,10 +230,15 @@ def gen_csvtable(n_clicks, confirmcols, csvchart, sort_by):
     Input('whatcols', 'value'),
     )
 def gen_csvtable(n_clicks, confirmcols):
-    if n_clicks:
+    if n_clicks and callback_context.triggered[0]['prop_id'].startswith('exportcols'):
         newdf = central.sourcedf[confirmcols]
-        csv_string = newdf.to_csv(index=False, encoding='utf-8')
-        return dict(content=csv_string, filename="notsodamnbig.csv")
+        # Check if the new dataframe is empty
+        if not newdf.empty:  
+            csv_string = newdf.to_csv(index=False, encoding='utf-8')
+            return dict(content=csv_string, filename="notsodamnbig.csv")
+        # In case of no data or no button click, return no downloadable data
+        return None
+        
 
 
 
