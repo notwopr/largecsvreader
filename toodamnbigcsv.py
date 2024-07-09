@@ -49,7 +49,7 @@ style_cell={
             'padding-right': 8,
         }
 
-title_section = html.H1('TOO DAMN BIG CSV VIEWER', className='mt-3 fw-bold text-center')
+title_section = html.H1('TOO DANG BIG CSV VIEWER', className='mt-3 fw-bold text-center')
 description_section = html.H4("When you don\'t have Excel and your XLS/CSV file is too large for Google Sheets. :(", className='text-center')
 
 table_section = html.Div(dash_table.DataTable(
@@ -235,7 +235,7 @@ def gen_csvtable(n_clicks, confirmcols):
         # Check if the new dataframe is empty
         if not newdf.empty:  
             csv_string = newdf.to_csv(index=False, encoding='utf-8')
-            return dict(content=csv_string, filename="notsodamnbig.csv")
+            return dict(content=csv_string, filename="notsodangbig.csv")
         # In case of no data or no button click, return no downloadable data
         return None
         
